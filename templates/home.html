@@ -1,0 +1,56 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-intro padding-y-sm">
+   <div class="container">
+      <div class="intro-banner-wrap">
+         <div class="row">
+            <div class="col-md-6">
+               <!-- Grande photo -->
+               <img src="{% static 'images/items/13.jpg' %}" class="img-fluid rounded shadow-lg" style="width: 100%; max-width: 300px; height: auto;">
+            </div>
+            <div class="col-md-6">
+               <!-- Texte de présentation -->
+               <h2 class="display-4">Bienvenue sur notre boutique en ligne</h2>
+               <p class="lead">Explorez notre sélection exclusive de produits de haute qualité. Découvrez ce dont vous avez besoin et profitez de nos offres spéciales.</p>
+               <a href="#" class="btn btn-primary btn-lg">Explorer la boutique</a>
+            </div>
+         </div>
+      </div>
+   </div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y-sm">
+   <div class="container">
+      <header class="section-heading">
+         <a href="{% url 'store' %}" class="btn btn-outline-primary float-right">Voir tout</a>
+         <h3 class="section-title">Produits populaires</h3>
+      </header><!-- sect-heading -->
+      
+      <div class="row">
+         {% for product in products %}
+         <div class="col-md-3">
+            <div class="card card-product-grid">
+               <a href="{{ product.get_url }}" class="img-wrap">
+                  <img src="{{ product.images.url }}" alt="{{ product.product_name }}">
+               </a>
+               <figcaption class="info-wrap">
+                  <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+                  <div class="price mt-1">${{ product.price }}</div> <!-- price-wrap.// -->
+               </figcaption>
+            </div>
+         </div>
+         {% endfor %}<!-- col.// -->
+      </div> <!-- row.// -->
+   </div><!-- container // -->
+</section>
+<!-- ========================= SECTION  END// ========================= -->
+
+{% endblock %}
